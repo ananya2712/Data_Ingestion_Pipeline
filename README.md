@@ -1,6 +1,6 @@
-# Job Data Processing Project
+# Job Data Processing 
 
-A containerized application that processes job data from JSON files, stores it in MongoDB, uses Redis for de-duplication and provides query functionality to export the data as CSV.
+A containerized application that processes job data from JSON files, stores it in MongoDB, uses Redis for de-duplication, and provides query functionality to export the data as CSV.
 
 ## Project Structure
 
@@ -101,7 +101,8 @@ This will start three containers:
 
 Check if the containers are running using:
 
-```docker ps
+```bash
+docker ps
 ```
 
 ### 4. Process the Data
@@ -189,4 +190,4 @@ This project is licensed for educational purposes only.
 
 ---
 
-Created for Data Integration Project (DIP)
+Created for Data Ingestion Project (DIP)
