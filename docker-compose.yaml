@@ -1,0 +1,44 @@
+services:
+  scrapy:
+    build: .
+    container_name: scrapy_crawler
+    volumes:
+      - ./:/app
+    depends_on:
+      - mongodb
+      - redis
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/
+      - MONGO_DATABASE=jobs_data
+      - REDIS_URL=redis://redis:6379/0
+    command: tail -f /dev/null  # Keep container running until you execute scrapy commands
+    networks:
+      - scraper_network
+
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - scraper_network
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - scraper_network
+
+networks:
+  scraper_network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+  redis_data:
